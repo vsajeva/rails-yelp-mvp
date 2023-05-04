@@ -2,8 +2,8 @@ class ReviewsController < ApplicationController
   before_action :set_restaurant, only: %i[new create]
 
   def index
-    # @reviews = Review.where(restaurant_id: @restaurant)
-    @reviews = Review.all
+    set_restaurant
+    @reviews = Review.where(restaurant_id: @restaurant)
   end
 
   def new
@@ -13,8 +13,11 @@ class ReviewsController < ApplicationController
   def create
     @review = Review.new(review_params)
     @review.restaurant = @restaurant
-    @review.save
-    redirect_to restaurant_reviews_path(@restaurant)
+    if @review.save
+      redirect_to restaurant_path(@restaurant)
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private
