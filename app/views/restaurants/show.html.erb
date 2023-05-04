@@ -6,17 +6,22 @@
   <p><%= @restaurant.phone_number %></p>
   <p><%= @restaurant.category %></p>
 </div>
-<div class = "card">
-  <%= link_to 'Reviews', restaurant_reviews_path(@restaurant) %>
+  <%# <%= link_to 'Reviews', restaurant_reviews_path(@restaurant) %>
+  <hr>
+<ul class="list-group">
+  <p>Reviews</p>
+  <% @restaurant.reviews.each do |review| %>
+    <li class="list-group-item"><%= review.content %><%= review.rating %></li>
+  <% end %>
+</ul>
+<br>
   <%# <%= link_to 'Add a new review', new_restaurant_review_path(@restaurant.id)%>
-  <h1>Add a new review:</h1>
+  <p>Add a new review:</p>
   <%= simple_form_for [@restaurant, @review] do |f| %>
     <%= f.input :content, placeholder: "Type here..."%>
     <%= f.input :rating,  placeholder: "Add a rating (1-5)" %>
     <%= f.submit "Add your review", class: "btn btn-primary" %>
 <% end %>
 <br>
-</div>
-<div class = "card">
-  <%= link_to "Back to restaurants", restaurants_path(@restaurants) %>
-</div>
+<%= link_to "Back to restaurants", restaurants_path(@restaurants) %>
+
