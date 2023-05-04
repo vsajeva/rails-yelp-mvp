@@ -8,10 +8,15 @@
 </div>
 <div class = "card">
   <%= link_to 'Reviews', restaurant_reviews_path(@restaurant) %>
-  <%= link_to 'Add a new review', new_restaurant_review_path(@restaurant.id)%>
+  <%# <%= link_to 'Add a new review', new_restaurant_review_path(@restaurant.id)%>
+  <h1>Add a new review:</h1>
+  <%= simple_form_for [@restaurant, @review] do |f| %>
+    <%= f.input :content, placeholder: "Type here..."%>
+    <%= f.input :rating,  placeholder: "Add a rating (1-5)" %>
+    <%= f.submit "Add your review", class: "btn btn-primary" %>
+<% end %>
+<br>
 </div>
 <div class = "card">
   <%= link_to "Back to restaurants", restaurants_path(@restaurants) %>
 </div>
-
-
