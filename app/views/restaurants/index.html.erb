@@ -4,8 +4,14 @@
 <div class="container">
 <ul>
   <% @restaurants.each do |restaurant| %>
-    <li><%= restaurant.name %></li>
+    <li> <%= link_to restaurant.name, restaurant_path(restaurant.id), class: "link"%></li>
   <% end %>
 </ul>
 
 </div>
+
+<hr>
+
+<%= link_to new_restaurant_path do %>
+  <i class="fa fa-plus">Add a new restaurant</i>
+<% end %>

@@ -1,0 +1,15 @@
+<h1>Restaurant details</h1>
+<hr>
+<div class = "container">
+  <h2><%= @restaurant.name %></h2>
+  <p><%= @restaurant.address %></p>
+  <p><%= @restaurant.phone_number %></p>
+  <p><%= @restaurant.category %></p>
+</div>
+<div class = "card">
+  <%= link_to 'Reviews', restaurant_reviews_path(@restaurant) %>
+  <%= link_to 'Add a new review', new_restaurant_review_path(@restaurant.id)%>
+</div>
+<div class = "card">
+  <%= link_to "Back to restaurants", restaurants_path(@restaurants) %>
+</div>
